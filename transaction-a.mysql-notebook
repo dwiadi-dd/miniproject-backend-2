@@ -1,0 +1,762 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nuse bangkitmart;\nINSERT INTO orders(order_id,order_date, status, user_id) VALUES \n(1,'2023-01-01 12:00:00', 'PENDING', 1)\nINSERT INTO ordered_products(order_id,product_id,quantity) VALUES\n(1,1,2),\n(1,3,10)\nSTART TRANSACTION;\n\nSELECT *\nFROM users\nWHERE id = 1 FOR UPDATE;\nSELECT  name, stocks, price\nFROM products\nWHERE product_id = 1 FOR UPDATE;\nSELECT  name, stocks, price\nFROM products\nWHERE product_id = 3 FOR UPDATE;\n\nUPDATE products\nSET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 1)\nWHERE product_id = 1;\nUPDATE products\nSET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 3)\nWHERE product_id = 3;\n\nUPDATE users\nSET balance = balance - (SELECT quantity FROM ordered_products WHERE product_id = 1) * (SELECT price FROM products WHERE product_id = 1)\nWHERE id = (SELECT user_id FROM orders WHERE order_id = 1);\nUPDATE users\nSET balance = balance - (SELECT quantity FROM ordered_products WHERE product_id = 3) * (SELECT price FROM products WHERE product_id = 3)\nWHERE id = (SELECT user_id FROM orders WHERE order_id = 1);\n\nSELECT p.name, op.quantity, p.price, op.quantity * p.price total\nFROM ordered_products op\nJOIN orders o ON op.order_id = o.order_id\nJOIN products p ON op.product_id = p.product_id\nWHERE o.order_id = 1;\nSELECT name, balance\nFROM users\nWHERE id=1\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 42,
+                    "column": 1
+                },
+                "position": {
+                    "lineNumber": 42,
+                    "column": 1
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 25,
+                "column": 1
+            },
+            "firstPositionDeltaTop": -1
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Ctrl+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 117.984375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 2,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "405234cc-df58-477f-bff3-864325de6829",
+                            "content": "OK, 0 records retrieved in 1.651ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 16
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 3,
+                "end": 4,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "491b3ebe-51db-46b8-a24c-0d2590e4b4ed",
+                            "content": "OK, 1 row affected in 20.991ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 104
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 5,
+                "end": 7,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "c745ce4b-10bf-4706-805a-28bd73f92b07",
+                            "content": "OK, 2 rows affected in 23.943ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 83
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 8,
+                "end": 9,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "bb55b755-cfcf-4bf8-b09b-22bc46ce7642",
+                            "content": "OK, 0 records retrieved in 3.108ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 18
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 18,
+                            "length": 1
+                        },
+                        "contentStart": 17,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 10,
+                "end": 12,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "ed0b012b-a8ec-43c4-cbea-9956d95eafbf"
+                    ]
+                },
+                "currentHeight": 36,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 44
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "29e0fcc9-383d-4769-8487-7ce029d5481f",
+                    "resultId": "ed0b012b-a8ec-43c4-cbea-9956d95eafbf",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "Bangkit",
+                            "2": "123 Rempoa",
+                            "3": 40000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "address",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "balance",
+                            "field": "3",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 5.005ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT *\nFROM users\nWHERE id = 1 FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 13,
+                "end": 15,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "89f7ce0b-9e21-4f05-bfb8-452a4a12402b"
+                    ]
+                },
+                "currentHeight": 36,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 74
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "29e0fcc9-383d-4769-8487-7ce029d5481f",
+                    "resultId": "89f7ce0b-9e21-4f05-bfb8-452a4a12402b",
+                    "rows": [
+                        {
+                            "0": "Coca-Cola",
+                            "1": 0,
+                            "2": 1000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "stocks",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 5.983ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT  name, stocks, price\nFROM products\nWHERE product_id = 1 FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 16,
+                "end": 19,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "32d64d71-562b-4212-81c2-42109e648010"
+                    ]
+                },
+                "currentHeight": 36,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 74
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 74,
+                            "length": 1
+                        },
+                        "contentStart": 73,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "29e0fcc9-383d-4769-8487-7ce029d5481f",
+                    "resultId": "32d64d71-562b-4212-81c2-42109e648010",
+                    "rows": [
+                        {
+                            "0": "Teh Botol",
+                            "1": 50,
+                            "2": 2000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "stocks",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 1.997ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT  name, stocks, price\nFROM products\nWHERE product_id = 3 FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 20,
+                "end": 22,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "7a5da26e-b433-4560-b650-7a2c4bf749ff",
+                            "content": "OK, 1 row affected in 5.698ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 120
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 120,
+                            "length": 0
+                        },
+                        "contentStart": 119,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 23,
+                "end": 26,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "61eb965e-1149-4cc4-8e33-c01de8ce938e",
+                            "content": "OK, 1 row affected in 3.003ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 120
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 120,
+                            "length": 1
+                        },
+                        "contentStart": 119,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 27,
+                "end": 29,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "a88118e2-8fa0-48de-aec1-71acb7036584",
+                            "content": "OK, 1 row affected in 3.001ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 209
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 209,
+                            "length": 0
+                        },
+                        "contentStart": 208,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 30,
+                "end": 33,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "d50bf02d-2377-4844-f941-baa6d9d11e44",
+                            "content": "OK, 1 row affected in 4.007ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 209
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 209,
+                            "length": 1
+                        },
+                        "contentStart": 208,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 34,
+                "end": 38,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "89e28549-b7c2-4a42-cffd-d13617e6ac00"
+                    ]
+                },
+                "currentHeight": 112.609375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 201
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 201,
+                            "length": 0
+                        },
+                        "contentStart": 200,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "29e0fcc9-383d-4769-8487-7ce029d5481f",
+                    "resultId": "89e28549-b7c2-4a42-cffd-d13617e6ac00",
+                    "rows": [
+                        {
+                            "0": "Coca-Cola",
+                            "1": 2,
+                            "2": 1000,
+                            "3": 2000
+                        },
+                        {
+                            "0": "Teh Botol",
+                            "1": 10,
+                            "2": 2000,
+                            "3": 20000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "quantity",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "total",
+                            "field": "3",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 2 records retrieved in 2.993ms"
+                    },
+                    "totalRowCount": 2,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT p.name, op.quantity, p.price, op.quantity * p.price total\nFROM ordered_products op\nJOIN orders o ON op.order_id = o.order_id\nJOIN products p ON op.product_id = p.product_id\nWHERE o.order_id = 1"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 39,
+                "end": 41,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "c20dbaf8-61fb-4eb8-b628-056d5a48a878"
+                    ]
+                },
+                "currentHeight": 89.78125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 42
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "29e0fcc9-383d-4769-8487-7ce029d5481f",
+                    "resultId": "c20dbaf8-61fb-4eb8-b628-056d5a48a878",
+                    "rows": [
+                        {
+                            "0": "Bangkit",
+                            "1": 18000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "balance",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 2.925ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT name, balance\nFROM users\nWHERE id=1"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 42,
+                "end": 42,
+                "language": "mysql",
+                "currentHeight": 180,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}

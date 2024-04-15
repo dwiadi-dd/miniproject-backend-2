@@ -1,0 +1,354 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nuse bangkitmart;\nSTART TRANSACTION;\n\nSELECT name,address,balance\nFROM users\nWHERE name = \"Bangkit\" FOR UPDATE;\nSELECT name, stocks, price\nFROM products\nWHERE name = \"Coca-Cola\" FOR UPDATE;\nSELECT name, stocks, price\nFROM products\nWHERE name = \"Teh Botol\" FOR UPDATE;\nUPDATE products\nSET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 1)\nWHERE product_id = 1;",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 4,
+                    "column": 1
+                },
+                "position": {
+                    "lineNumber": 4,
+                    "column": 1
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 2,
+                "column": 1
+            },
+            "firstPositionDeltaTop": 61
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Ctrl+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 117.984375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 4,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "058840bc-2859-4653-dade-6928c185bb6d",
+                            "content": "OK, 0 records retrieved in 1.012ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "2b59778b-27fb-4d31-a379-36828827310a",
+                            "content": "OK, 0 records retrieved in 2ms"
+                        }
+                    ]
+                },
+                "currentHeight": 44.65625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 16
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 16,
+                            "length": 19
+                        },
+                        "contentStart": 17,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 35,
+                            "length": 1
+                        },
+                        "contentStart": 34,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 5,
+                "end": 7,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "11762a60-4b3f-455b-9755-6f863eb401aa"
+                    ]
+                },
+                "currentHeight": 89.78125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 73
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "e2a4a235-b7ce-4840-e508-bd3b5d8554d8",
+                    "resultId": "11762a60-4b3f-455b-9755-6f863eb401aa",
+                    "rows": [
+                        {
+                            "0": "Bangkit",
+                            "1": "123 Rempoa",
+                            "2": 100000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "address",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "balance",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 1.965ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT name,address,balance\nFROM users\nWHERE name = \"Bangkit\" FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 8,
+                "end": 10,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "21703717-a36f-4379-8410-1a3333a71515"
+                    ]
+                },
+                "currentHeight": 89.78125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 77
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "e2a4a235-b7ce-4840-e508-bd3b5d8554d8",
+                    "resultId": "21703717-a36f-4379-8410-1a3333a71515",
+                    "rows": [
+                        {
+                            "0": "Coca-Cola",
+                            "1": 40,
+                            "2": 1000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "stocks",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 3.004ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT name, stocks, price\nFROM products\nWHERE name = \"Coca-Cola\" FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 11,
+                "end": 13,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "fd18a4bc-e80c-46fb-e3ff-ef84e7b6a4a9"
+                    ]
+                },
+                "currentHeight": 89.78125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 77
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "e2a4a235-b7ce-4840-e508-bd3b5d8554d8",
+                    "resultId": "fd18a4bc-e80c-46fb-e3ff-ef84e7b6a4a9",
+                    "rows": [
+                        {
+                            "0": "Teh Botol",
+                            "1": 90,
+                            "2": 2000
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "name",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "stocks",
+                            "field": "1",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 4
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 1 record retrieved in 2.989ms"
+                    },
+                    "totalRowCount": 1,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT name, stocks, price\nFROM products\nWHERE name = \"Teh Botol\" FOR UPDATE"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 14,
+                "end": 16,
+                "language": "mysql",
+                "currentHeight": 180,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 120
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}

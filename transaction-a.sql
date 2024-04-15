@@ -33,11 +33,11 @@ WHERE product_id = 3 FOR UPDATE;
 
 -- update data stock product yang diorder
 UPDATE products
-SET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 1)
+SET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 1 AND order_id = 1)
 WHERE product_id = 1;
 
 UPDATE products
-SET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 3)
+SET stocks = stocks - (SELECT quantity FROM ordered_products WHERE product_id = 3 AND order_id = 1)
 WHERE product_id = 3;
 
 
